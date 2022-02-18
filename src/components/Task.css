@@ -1,0 +1,34 @@
+.taskWrapper {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid var(--txtColor);
+  margin-bottom: 10px;
+}
+.taskWrapper.done {
+  color: #999;
+}
+.textWrapper{
+  padding: 8px 10px;
+}
+.iconWrapper{
+  display: flex;
+  flex-direction: row-reverse;
+  position: relative;
+}
+.iconWrapper a {
+  color: var(--primaryColor);
+  cursor: pointer;
+  padding: 10px;
+  transition: .2s ease;
+  height: max-content;
+}
+.iconWrapper a:hover {
+  color: var(--primaryHoverColor);
+  box-shadow: inset 0 0 100px 100px rgb(255 255 255 / 0.1);
+}
+.material-icons.active{
+  box-shadow: inset 0 0 100px 100px rgb(255 255 255 / 0.05);
+}
+.outdated{
+  color: red;
+}

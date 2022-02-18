@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ActionMenu from './ActionMenu';
-
+import "./Task.css"
 const Task = (props) => {
   const [dropdown, setOpen] = useState(false)
   const toggleDropdown = () => setOpen(!dropdown);
@@ -13,7 +13,7 @@ const Task = (props) => {
           {props.text} {props.date && <>- <a className={activeDate}>{props.date}</a></>}
         </span>
         <div className="iconWrapper">
-          <a className="material-icons" onClick={toggleDropdown}>more_horiz</a>
+          <a className={!dropdown? "material-icons": "material-icons active"} onClick={toggleDropdown}>more_horiz</a>
           {dropdown && <ActionMenu
               id={props.id}
               doneTask={props.doneTask}
