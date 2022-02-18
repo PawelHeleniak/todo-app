@@ -26,7 +26,6 @@ class App extends Component {
         task.done = false
       }
     })
-
     this.setState({
       tasks
     })
@@ -41,7 +40,7 @@ class App extends Component {
     }else{
       maxIndex = 0
     }
-    console.log(maxIndex);
+
     tasks.push({
       id: maxIndex,
       text: text,

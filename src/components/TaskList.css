@@ -2,13 +2,13 @@
   display: flex;
   flex-direction: column;
 }
-.taskList div {
+.taskList .taskWrapper {
   display: flex;
   justify-content: space-between;
   border: 1px solid var(--txtColor);
   margin-bottom: 10px;
 }
-.taskList div.done {
+.taskList .taskWrapper.done {
   color: #999;
 }
 .textWrapper{
@@ -16,6 +16,7 @@
 }
 .iconWrapper{
   display: flex;
+  flex-direction: row-reverse;
 }
 .iconWrapper a {
   color: var(--primaryColor);
