@@ -3,6 +3,7 @@ import "./TaskHeader.css";
 
 const TaskHeader = (props) => {
   let minDate = new Date().toISOString().slice(0, 10);
+  let maxDate = minDate.slice(0, 4) *1 + 100 + minDate.slice(4, 10)
 
   const [textTask, setText] = React.useState("");
   const [dateTask, setDate] = React.useState(minDate);
@@ -65,6 +66,8 @@ const TaskHeader = (props) => {
           id="finishDate"
           value={dateTask}
           disabled={!dateCheck ? true : false}
+          min={minDate}
+          max={maxDate}
           onChange={(e) => setDate(e.target.value)}
         />
         <input

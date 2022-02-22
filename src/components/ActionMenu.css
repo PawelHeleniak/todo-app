@@ -4,5 +4,17 @@
   z-index: 10;
   position: absolute;
   top: 44px;
-  background: #222;
+  background-color: #333;
+  animation-name: test;
+  animation-duration: 0.2s;
+  overflow: hidden;
+}
+
+@keyframes test {
+  from{
+    height: 0;
+  }
+  to{
+    height: 200%;
+  }
 }
