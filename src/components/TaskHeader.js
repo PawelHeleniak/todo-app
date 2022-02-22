@@ -1,99 +1,88 @@
-import React, {Component} from 'react';
-import './TaskHeader.css'
-class TaskHeader extends Component {
-  minDate = new Date().toISOString().slice(0, 10)
-  state = { 
-    text: "",
-    date: this.minDate,
-    check: true,
+import React from "react";
+import "./TaskHeader.css";
 
-    errors:{
-      addTask: false,
-    }
-  }
+const TaskHeader = (props) => {
+  let minDate = new Date().toISOString().slice(0, 10);
 
-  handleValue =(value, e)=> {
-    if(value === "text" || value === "date"){
-      this.setState({
-        [value]: e.target.value
-      })
-    }else if(value === "check"){
-      this.setState({
-        [value]: e.target.checked
-      })
-    }
-  }
+  const [textTask, setText] = React.useState("");
+  const [dateTask, setDate] = React.useState(minDate);
+  const [dateCheck, setCheck] = React.useState(true);
 
-  handleClick =()=> {
-    let validation = this.handleValidation()
+  const [errors, setError] = React.useState(false);
 
-    if(!validation.text){
-      if(!validation.check){
-        this.props.add(this.state.text, this.state.date)
-      }else{
-        this.props.add(this.state.text, null)
+  const handleClick = () => {
+    let validation = handleValidation();
+
+    if (!validation.text) {
+      if (!validation.check) {
+        props.add(props.tasks, textTask, dateTask);
+      } else {
+        props.add(props.tasks, textTask, null);
       }
-      
-      this.setState({
-        text: ""
-      })
-      this.setState({
-        errors: {
-          addTask: false
-        }
-      })
-    }else{
-      this.setState({
-        errors: {
-          addTask: validation
-        }
-      })
+
+      setText("");
+      setError(false);
+    } else {
+      setError(true);
     }
-  }
+  };
 
-  handleValidation =()=> {
-    let text = false
-    let check = false
+  const handleValidation = () => {
+    let text = false;
+    let check = false;
 
-    if(this.state.text.trim() === ""){
-      text = true
+    if (textTask.trim() === "") {
+      text = true;
     }
-    if(!this.state.check){
-      check = true
+    if (!dateCheck) {
+      check = true;
     }
-    return ({text, check})
-  }
+    return { text, check };
+  };
 
-  handleSort =(e)=>{
-    let sort = e.target.value
-    this.props.sort(sort)
-  }
+  const handleSort = (e) => {
+    let sort = e.target.value;
+    props.sort(sort);
+  };
 
-  render() {
-    const {text,date,check} = this.state;
-    const {addTask} = this.state.errors;
-
-    return (
-      <div className="taskHeader">
-        <h2>Task list</h2>
-        <div className="inputWrapper">
-          <input type="text" name="addTask" placeholder="Add new task" className={addTask? "validateError":null} id="newTask" value={text} onChange={this.handleValue.bind(this, "text")}/>
-        </div>
-        <div className="inputWrapper">
-          <input type="date" id="finishDate" value={date} disabled={!check? true:false} onChange={this.handleValue.bind(this, "date")} />
-          <input type="checkbox" checked={check} onChange={this.handleValue.bind(this, "check")} />
-        </div>
-        <div className="option">
-          <button onClick={this.handleClick}>Add task</button>
-          <select onChange={this.handleSort}>
-            <option>All</option>
-            <option>Done</option>
-            <option>Progress</option>
-          </select>
-        </div>
+  return (
+    <div className="taskHeader">
+      <h2>Task list</h2>
+      <div className="inputWrapper">
+        <input
+          type="text"
+          name="addTask"
+          placeholder="Add new task"
+          className={errors ? "validateError" : null}
+          id="newTask"
+          value={textTask}
+          onChange={(e) => setText(e.target.value)}
+        />
       </div>
-    );
-  }
-}
- 
+      <div className="inputWrapper">
+        <input
+          type="date"
+          id="finishDate"
+          value={dateTask}
+          disabled={!dateCheck ? true : false}
+          onChange={(e) => setDate(e.target.value)}
+        />
+        <input
+          type="checkbox"
+          checked={dateCheck}
+          onChange={(e) => setCheck(e.target.checked)}
+        />
+      </div>
+      <div className="option">
+        <button onClick={handleClick}>Add task</button>
+        <select onChange={handleSort}>
+          <option>All</option>
+          <option>Done</option>
+          <option>Progress</option>
+        </select>
+      </div>
+    </div>
+  );
+};
+
 export default TaskHeader;

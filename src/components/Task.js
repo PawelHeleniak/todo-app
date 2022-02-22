@@ -18,6 +18,7 @@ const Task = (props) => {
               id={props.id}
               doneTask={props.doneTask}
               removeTask={props.removeTask}
+              tasks={props.tasks}
           />}
         </div>
       </div>
