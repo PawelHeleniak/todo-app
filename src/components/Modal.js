@@ -16,8 +16,12 @@ const Modal = props => {
     <div className="popup">
       <div className='editModal'>
         <h2>Edit task</h2>
-        <input type="text" value={textValue} onChange={e => setText(e.target.value)}/>
-        <input type="date" value={dateValue} onChange={e => setDate(e.target.value)}/>
+        <div className='inputWrapper'>
+          <input type="text" value={textValue} onChange={e => setText(e.target.value)}/>
+        </div>
+        <div className="inputWrapper">
+          <input type="date" value={dateValue} onChange={e => setDate(e.target.value)}/>
+        </div>
         <div className='btnWrapper'>
           <button onClick={props.editBtn.bind(this, "accept", idTask,textValue,dateValue)}>Accept</button>
           <button onClick={props.editBtn.bind(this, "cancel", idTask)}>Cancel</button>
