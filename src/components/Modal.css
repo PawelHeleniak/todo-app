@@ -9,10 +9,11 @@
 }
 .editModal{
   background-color: var(--bgColor);
-  width: 60%;
+  width: 40%;
   display: flex;
   flex-direction: column;
   padding: 20px;
+  margin: 25px;
 }
 .btnWrapper button:first-child{
   margin-right: 10px;
@@ -21,4 +22,20 @@ h2{
   text-align: center;
   padding-bottom: 20px;
   margin: 15px 0;
+}
+.editModal .inputWrapper{
+  width: 100%;
+}
+
+/* media */
+@media (max-width:767px) {
+  .editModal{
+    width: 60%;
+  }
+}
+
+@media (max-width:419px) {
+  .editModal{
+    width: 70%;
+  }
 }
