@@ -11,6 +11,7 @@ const App = () => {
 
   const [textModal, getTextModal] = React.useState("");
   const [dateModal, getDateModal] = React.useState("");
+  const [checkDateModal, getCheckModal] = React.useState(false);
   const [idModal, getIdModal] = React.useState("");
 
   const removeTask = (id) => {
@@ -25,7 +26,7 @@ const App = () => {
     let todoList = [...tasks];
     todoList.map((task) => {
       if (task.id === id) {
-        task.done = false;
+        task.done = !task.done;
       }
     });
     getTasks(todoList);
@@ -78,26 +79,37 @@ const App = () => {
     if (editModal !== true) {
       getModal(true);
     }
+    let minDate = new Date().toISOString().slice(0, 10);
 
     let todoList = [...tasks];
     todoList.filter((task) => {
       if (task.id === id) {
         getTextModal(task.text);
-        getDateModal(task.date);
         getIdModal(task.id);
+        if(task.date !== ""){
+          getDateModal(task.date);
+          getCheckModal(true);
+        }else{
+          getDateModal(minDate);
+          getCheckModal(false);
+        }
       }
     });
   };
 
-  const handleBtnModal = (option, id, text, date, e) => {
+  const handleBtnModal = (option, id, text, date, check, e) => {
     getModal(false);
-
     if (option === "accept") {
       let todoList = [...tasks];
       todoList.filter((task) => {
         if (task.id === id) {
           task.text = text;
-          task.date = date;
+          task.done = check;
+          if(check){
+            task.date = date;
+          }else{
+            task.date = "";
+          }
         }
       });
     } else {
@@ -108,7 +120,11 @@ const App = () => {
   return (
     <div className="container">
       <div className="wrapperTasklist">
-        <TaskHeader tasks={tasks} add={addTask} sort={handleSortTask} />
+        <TaskHeader 
+         tasks={tasks} 
+         add={addTask} 
+         sort={handleSortTask} 
+        />
         <TaskList
           tasks={tasks}
           remove={removeTask}
@@ -123,6 +139,7 @@ const App = () => {
           edit={handleOpenModal()}
           date={dateModal}
           text={textModal}
+          dateCheck={checkDateModal}
           id={idModal}
         />
       )}
