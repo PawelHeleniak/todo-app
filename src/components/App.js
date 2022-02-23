@@ -86,7 +86,8 @@ const App = () => {
       if (task.id === id) {
         getTextModal(task.text);
         getIdModal(task.id);
-        if(task.date !== ""){
+        if(task.date !== undefined){
+          console.log(task.date);
           getDateModal(task.date);
           getCheckModal(true);
         }else{
@@ -104,11 +105,10 @@ const App = () => {
       todoList.filter((task) => {
         if (task.id === id) {
           task.text = text;
-          task.done = check;
           if(check){
             task.date = date;
           }else{
-            task.date = "";
+            task.date = undefined;
           }
         }
       });

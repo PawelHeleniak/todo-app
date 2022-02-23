@@ -18,7 +18,7 @@ const TaskHeader = (props) => {
       if (!validation.check) {
         props.add(props.tasks, textTask, dateTask);
       } else {
-        props.add(props.tasks, textTask, null);
+        props.add(props.tasks, textTask);
       }
 
       setText("");
