@@ -58,7 +58,7 @@
 }
 
 .validateError{
-  border-color: red !important;
+  border-color: var(--alertColor) !important;
 }
 
 @media (max-width: 767px) {

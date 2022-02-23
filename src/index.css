@@ -18,4 +18,6 @@ code {
   --primaryColor: #7f3bc3;
   --primaryHoverColor: #a83bc3;
   --txtColor: #fff;
+  --bgColor: #222;
+  --alertColor: #FF0000;
 }

@@ -13,6 +13,7 @@ const TaskList = (props) => {
     removeTask={props.remove}
     doneTask={props.done}
     tasks={props.tasks}
+    editTask={props.edit}
   />)
   return (
     <>

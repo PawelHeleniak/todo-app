@@ -2,10 +2,16 @@ import React from "react";
 import "./App.css";
 import TaskList from "./TaskList";
 import TaskHeader from "./TaskHeader";
+import Modal from "./Modal";
 
 const App = () => {
   const [tasks, getTasks] = React.useState([]);
   const [sort, getSort] = React.useState("all");
+  const [editModal, getModal] = React.useState(false);
+
+  const [textModal, getTextModal] = React.useState("");
+  const [dateModal, getDateModal] = React.useState("");
+  const [idModal, getIdModal] = React.useState("");
 
   const removeTask = (id) => {
     let todoList = [...tasks];
@@ -15,7 +21,7 @@ const App = () => {
     getTasks(todoList);
   };
 
-  const handleDoneTask = (tasks, id) => {
+  const handleDoneTask = (id) => {
     let todoList = [...tasks];
     todoList.map((task) => {
       if (task.id === id) {
@@ -53,13 +59,8 @@ const App = () => {
   const handleTaskList = () => {
     let todoList = [...tasks];
     let filtered;
-    let taskSort = sort;
 
-    if (!taskSort) {
-      sort = "all";
-    }
-
-    switch (taskSort) {
+    switch (sort) {
       case "Done":
         filtered = todoList.filter((task) => !task.done);
         break;
@@ -73,6 +74,37 @@ const App = () => {
     return filtered;
   };
 
+  const handleOpenModal = (id) => {
+    if (editModal !== true) {
+      getModal(true);
+    }
+
+    let todoList = [...tasks];
+    todoList.filter((task) => {
+      if (task.id === id) {
+        getTextModal(task.text);
+        getDateModal(task.date);
+        getIdModal(task.id);
+      }
+    });
+  };
+
+  const handleBtnModal = (option, id, text, date, e) => {
+    getModal(false);
+
+    if (option === "accept") {
+      let todoList = [...tasks];
+      todoList.filter((task) => {
+        if (task.id === id) {
+          task.text = text;
+          task.date = date;
+        }
+      });
+    } else {
+      return null;
+    }
+  };
+
   return (
     <div className="container">
       <div className="wrapperTasklist">
@@ -82,8 +114,18 @@ const App = () => {
           remove={removeTask}
           done={handleDoneTask}
           sort={handleTaskList()}
+          edit={handleOpenModal}
         />
       </div>
+      {editModal && (
+        <Modal
+          editBtn={handleBtnModal}
+          edit={handleOpenModal()}
+          date={dateModal}
+          text={textModal}
+          id={idModal}
+        />
+      )}
     </div>
   );
 };

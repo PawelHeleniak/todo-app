@@ -4,7 +4,7 @@
 }
 
 .wrapperTasklist{
-  background: #222;
+  background: var(--bgColor);
   padding: 20px;
   font-size: 20px;
   width: 60%;

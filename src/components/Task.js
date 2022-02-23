@@ -42,6 +42,7 @@ const Task = (props) => {
             doneTask={props.doneTask}
             removeTask={props.removeTask}
             tasks={props.tasks}
+            editTask={props.editTask}
           />
         )}
       </div>

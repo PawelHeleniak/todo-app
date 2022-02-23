@@ -6,7 +6,7 @@
   top: 44px;
   background-color: #333;
   animation-name: test;
-  animation-duration: 0.2s;
+  animation-duration: 0.3s;
   overflow: hidden;
 }
 
@@ -15,6 +15,6 @@
     height: 0;
   }
   to{
-    height: 200%;
+    height: 132px;
   }
 }
