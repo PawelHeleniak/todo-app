@@ -5,7 +5,7 @@
   background-color: var(--bgColor);
   border-radius: 5px;
   padding: 4px;
-  animation: ejectionTask 1s;
+  animation: ejectionTask 0.5s;
   z-index: 2;
 }
 .taskWrapper.done {

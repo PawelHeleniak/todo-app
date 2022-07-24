@@ -21,14 +21,13 @@ const Modal = props => {
 
   const handleClick = (option, id) => {
     let validation = handleValidation();
-
     if (!validation.text) {
       if (!validation.check) {
         props.editBtn(option, idTask,textValue,dateValue,dateCheckValue);
       } else {
         props.editBtn(option, idTask);
       }
-
+      
       setText("");
       setError(false);
     } else {
@@ -50,7 +49,7 @@ const Modal = props => {
   };
 
   return (
-    <div className="popup">
+    <div className="wrapperModal">
       <div className='editModal'>
         <h2>Edit task</h2>
         <div className='inputWrapper'>
@@ -75,6 +74,10 @@ const Modal = props => {
             checked={dateCheckValue}
             onChange={(e) => setCheck(e.target.checked)}
           />
+        </div>
+        <div className="statusWrapper">
+          <button onClick={handleClick.bind(this, "done")}>Done</button>
+          <button onClick={handleClick.bind(this, "remove")}>Remove</button>
         </div>
         <div className='btnWrapper'>
           <button onClick={handleClick.bind(this, "accept")}>Accept</button>

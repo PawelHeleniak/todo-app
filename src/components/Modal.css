@@ -1,19 +1,19 @@
-.popup{
-  background-color: rgba(0, 0, 0, 0.5);
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.wrapperModal{
+  height: 100%;
+  background-color: var(--bgColor);
+  width: 20%;
+  animation: ejectionModal 0.5s;
 }
 .editModal{
-  background-color: var(--bgColor);
-  width: 40%;
   display: flex;
   flex-direction: column;
   padding: 20px;
-  margin: 25px;
+}
+.btnWrapper{
+  display: flex;
+}
+.btnWrapper button{
+  width: 100%;
 }
 .btnWrapper button:first-child{
   margin-right: 10px;
@@ -26,7 +26,19 @@ h2{
 .editModal .inputWrapper{
   width: 100%;
 }
-
+.statusWrapper{
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+.statusWrapper button{
+  margin-bottom: 10px;
+  color: var(--txtColor);
+  border-color: var(--txtColor);
+}
+.statusWrapper button:hover{
+  background-color: #333;
+}
 /* media */
 @media (max-width:768px) {
   .editModal{
@@ -37,5 +49,14 @@ h2{
 @media (max-width:420px) {
   .editModal{
     width: 70%;
+  }
+}
+
+@keyframes ejectionModal{
+  0%{
+    transform: translateX(100%);
+  }
+  100%{
+    transform: translateX(0);
   }
 }

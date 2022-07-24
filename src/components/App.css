@@ -1,21 +1,27 @@
 .container{
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center;
   height: 100vh;
-
+  overflow: hidden;
+}
+.flexBox{
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 .wrapperTask{
-  width: 70%;
+  width: 80%;
   font-size: 20px;
+  margin: 25px;
 }
 .actionAddTask{
   background: var(--bgColor);
   padding: 20px;
-  margin: 25px 0;
   border-radius: 5px;
 }
-
+.tasklist{
+  margin-top: 25px;
+}
 /* button, select */
 button,
 select{
@@ -76,11 +82,11 @@ input[type="checkbox"]:checked:after{
 /* media */
 @media (max-width:1200px) {
   .wrapperTask{
-    width: 80%;
+    width: 90%;
   }
 }
 @media (max-width:768px) {
   .wrapperTask{
-    width: 90%;
+    width: 100%;
   }
 }

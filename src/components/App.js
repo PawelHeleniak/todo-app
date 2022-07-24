@@ -112,41 +112,45 @@ const App = () => {
           }
         }
       });
-    } else {
+    } else if(option === "done"){
+      handleDoneTask(id)
+    } else if(option === "remove"){
+      removeTask(id)
+    }else {
       return null;
     }
   };
 
   return (
     <div className="container">
-      <div className="wrapperTask">
-        <div className="actionAddTask">
-          <TaskHeader 
-          tasks={tasks} 
-          add={addTask} 
-          sort={handleSortTask} 
-          />
+      <div className="flexBox">
+        <div className="wrapperTask">
+          <div className="actionAddTask">
+            <TaskHeader 
+            tasks={tasks} 
+            add={addTask} 
+            sort={handleSortTask} 
+            />
+          </div>
+          <div className="tasklist">
+            <TaskList
+              tasks={tasks}
+              sort={handleTaskList()}
+              edit={handleOpenModal}
+            />
+          </div>
         </div>
-        <div className="tasklist">
-          <TaskList
-            tasks={tasks}
-            remove={removeTask}
-            done={handleDoneTask}
-            sort={handleTaskList()}
-            edit={handleOpenModal}
+        {editModal && (
+          <Modal
+            editBtn={handleBtnModal}
+            edit={handleOpenModal()}
+            date={dateModal}
+            text={textModal}
+            dateCheck={checkDateModal}
+            id={idModal}
           />
-        </div>
+        )}
       </div>
-      {editModal && (
-        <Modal
-          editBtn={handleBtnModal}
-          edit={handleOpenModal()}
-          date={dateModal}
-          text={textModal}
-          dateCheck={checkDateModal}
-          id={idModal}
-        />
-      )}
     </div>
   );
 };
