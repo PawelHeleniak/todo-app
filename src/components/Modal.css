@@ -28,13 +28,13 @@ h2{
 }
 
 /* media */
-@media (max-width:767px) {
+@media (max-width:768px) {
   .editModal{
     width: 60%;
   }
 }
 
-@media (max-width:419px) {
+@media (max-width:420px) {
   .editModal{
     width: 70%;
   }

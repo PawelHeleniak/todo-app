@@ -119,19 +119,23 @@ const App = () => {
 
   return (
     <div className="container">
-      <div className="wrapperTasklist">
-        <TaskHeader 
-         tasks={tasks} 
-         add={addTask} 
-         sort={handleSortTask} 
-        />
-        <TaskList
-          tasks={tasks}
-          remove={removeTask}
-          done={handleDoneTask}
-          sort={handleTaskList()}
-          edit={handleOpenModal}
-        />
+      <div className="wrapperTask">
+        <div className="actionAddTask">
+          <TaskHeader 
+          tasks={tasks} 
+          add={addTask} 
+          sort={handleSortTask} 
+          />
+        </div>
+        <div className="tasklist">
+          <TaskList
+            tasks={tasks}
+            remove={removeTask}
+            done={handleDoneTask}
+            sort={handleTaskList()}
+            edit={handleOpenModal}
+          />
+        </div>
       </div>
       {editModal && (
         <Modal

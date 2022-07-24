@@ -21,7 +21,7 @@ const TaskList = (props) => {
         {task}
       </div>
       <div>
-        <span>Number of tasks: {props.sort.length}</span>
+        {!props.sort.length ? false : <span>Number of tasks: {props.sort.length}</span>}
       </div>
     </>
   );

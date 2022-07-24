@@ -1,8 +1,12 @@
 .taskWrapper {
   display: flex;
   justify-content: space-between;
-  border: 1px solid var(--txtColor);
-  margin-bottom: 10px;
+  margin-bottom: 5px;
+  background-color: var(--bgColor);
+  border-radius: 5px;
+  padding: 4px;
+  animation: ejectionTask 1s;
+  z-index: 2;
 }
 .taskWrapper.done {
   color: #999;
@@ -31,4 +35,14 @@
 }
 .outdated{
   color: var(--alertColor);
+}
+@keyframes ejectionTask{
+  0%{
+    transform: translateY(-100%);
+    z-index: 0;
+  }
+  100%{
+    transform: translateY(0);
+    z-index: 1;
+  }
 }
