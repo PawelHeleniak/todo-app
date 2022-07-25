@@ -49,6 +49,7 @@ const Modal = props => {
   };
 
   return (
+    <>
     <div className="wrapperModal">
       <div className='editModal'>
         <h2>Edit task</h2>
@@ -85,6 +86,8 @@ const Modal = props => {
         </div>
       </div>
     </div>
+    <div className="mobilePopup"></div>
+    </>
   );
 }
  

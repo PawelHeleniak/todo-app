@@ -8,6 +8,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  position: relative;
 }
 .wrapperTask{
   width: 80%;

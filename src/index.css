@@ -6,6 +6,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: linear-gradient(45deg, rgb(2, 0, 50) 0%, rgb(89, 29, 148) 30%, rgba(0,155,255,1) 100%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   color: var(--txtColor);
 }
 

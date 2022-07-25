@@ -1,5 +1,5 @@
 .wrapperModal{
-  height: 100%;
+  height: 100vh;
   background-color: var(--bgColor);
   width: 20%;
   animation: ejectionModal 0.5s;
@@ -40,18 +40,23 @@ h2{
   background-color: #333;
 }
 /* media */
-@media (max-width:768px) {
-  .editModal{
-    width: 60%;
-  }
-}
-
 @media (max-width:420px) {
-  .editModal{
+  .wrapperModal{
+    position: absolute;
+    right: 0;
+    z-index: 10;
     width: 70%;
   }
+  .mobilePopup{
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100vw;
+    height: 100vh;
+    z-index: 2;
+  }
 }
 
+/* animation */
 @keyframes ejectionModal{
   0%{
     transform: translateX(100%);
