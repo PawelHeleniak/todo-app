@@ -87,7 +87,6 @@ const App = () => {
         getTextModal(task.text);
         getIdModal(task.id);
         if(task.date !== undefined){
-          console.log(task.date);
           getDateModal(task.date);
           getCheckModal(true);
         }else{
@@ -132,7 +131,7 @@ const App = () => {
             sort={handleSortTask} 
             />
           </div>
-          <div className="tasklist">
+          <div className="taskListWrapper">
             <TaskList
               tasks={tasks}
               sort={handleTaskList()}
@@ -148,6 +147,7 @@ const App = () => {
             text={textModal}
             dateCheck={checkDateModal}
             id={idModal}
+            tasks={tasks}
           />
         )}
       </div>

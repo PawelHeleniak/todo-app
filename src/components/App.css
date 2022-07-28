@@ -1,16 +1,17 @@
 .container{
   display: flex;
   justify-content: center;
-  height: 100vh;
   overflow: hidden;
+  height: 100vh;
 }
 .flexBox{
   width: 100%;
   display: flex;
   justify-content: center;
-  position: relative;
+  /* position: relative; */
 }
 .wrapperTask{
+  height: calc(100% - 50px);
   width: 80%;
   font-size: 20px;
   margin: 25px;
@@ -20,8 +21,9 @@
   padding: 20px;
   border-radius: 5px;
 }
-.tasklist{
-  margin-top: 25px;
+.taskListWrapper{
+  margin: 25px 0;
+  height: 100%;
 }
 /* button, select */
 button,

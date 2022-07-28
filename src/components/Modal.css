@@ -42,7 +42,7 @@ h2{
 /* media */
 @media (max-width:420px) {
   .wrapperModal{
-    position: absolute;
+    position: fixed;
     right: 0;
     z-index: 10;
     width: 70%;
