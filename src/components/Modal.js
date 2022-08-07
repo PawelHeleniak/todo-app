@@ -49,45 +49,45 @@ const Modal = props => {
   };
 
   return (
-    <>
     <div className="wrapperModal">
-      <div className='editModal'>
-        <h2>Edit task</h2>
-        <div className='inputWrapper'>
-          <input 
-            type="text" 
-            value={textValue} 
-            onChange={e => setText(e.target.value)}
-            className={errors ? "validateError":null}
-          />
-        </div>
-        <div className="inputWrapper">
-          <input 
-            type="date" 
-            value={dateValue} 
-            disabled={!dateCheckValue ? true : false}
-            onChange={e => setDate(e.target.value)}
-            min={minDate}
-            max={maxDate}
-          />
-          <input
-            type="checkbox"
-            checked={dateCheckValue}
-            onChange={(e) => setCheck(e.target.checked)}
-          />
-        </div>
-        <div className="statusWrapper">
-          <button onClick={handleClick.bind(this, "done")}>Done</button>
-          <button onClick={handleClick.bind(this, "remove")}>Remove</button>
-        </div>
-        <div className='btnWrapper'>
-          <button onClick={handleClick.bind(this, "accept")}>Accept</button>
-          <button onClick={handleClick.bind(this, "cancel")}>Cancel</button>
+      <div className='modal'>
+        <div className='editModal'>
+          <h2>Edit task</h2>
+          <div className='inputWrapper'>
+            <input 
+              type="text" 
+              value={textValue} 
+              onChange={e => setText(e.target.value)}
+              className={errors ? "validateError":null}
+            />
+          </div>
+          <div className="inputWrapper">
+            <input 
+              type="date" 
+              value={dateValue} 
+              disabled={!dateCheckValue ? true : false}
+              onChange={e => setDate(e.target.value)}
+              min={minDate}
+              max={maxDate}
+            />
+            <input
+              type="checkbox"
+              checked={dateCheckValue}
+              onChange={(e) => setCheck(e.target.checked)}
+            />
+          </div>
+          <div className="statusWrapper">
+            <button onClick={handleClick.bind(this, "done")}>Done</button>
+            <button onClick={handleClick.bind(this, "remove")}>Remove</button>
+          </div>
+          <div className='btnWrapper'>
+            <button onClick={handleClick.bind(this, "accept")}>Accept</button>
+            <button onClick={handleClick.bind(this, "cancel")}>Cancel</button>
+          </div>
         </div>
       </div>
+      <div className="mobilePopup"></div>
     </div>
-    <div className="mobilePopup"></div>
-    </>
   );
 }
  
