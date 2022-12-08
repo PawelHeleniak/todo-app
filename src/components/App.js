@@ -1,7 +1,7 @@
 import React from "react";
-import "./App.css";
+// import "./App.css";
 import TaskList from "./TaskList";
-import TaskHeader from "./TaskHeader";
+import TaskForm from "./TaskForm";
 import Modal from "./Modal";
 
 const App = () => {
@@ -86,10 +86,10 @@ const App = () => {
       if (task.id === id) {
         getTextModal(task.text);
         getIdModal(task.id);
-        if(task.date !== undefined){
+        if (task.date !== undefined) {
           getDateModal(task.date);
           getCheckModal(true);
-        }else{
+        } else {
           getDateModal(minDate);
           getCheckModal(false);
         }
@@ -104,33 +104,33 @@ const App = () => {
       todoList.filter((task) => {
         if (task.id === id) {
           task.text = text;
-          if(check){
+          if (check) {
             task.date = date;
-          }else{
+          } else {
             task.date = undefined;
           }
         }
       });
-    } else if(option === "done"){
+    } else if (option === "done") {
       handleDoneTask(id)
-    } else if(option === "remove"){
+    } else if (option === "remove") {
       removeTask(id)
-    }else {
+    } else {
       return null;
     }
   };
 
   return (
-    <div className="container">
-      <div className="flexBox">
-        <div className="wrapperTask">
-          <div className="actionAddTask">
-            <TaskHeader 
-            tasks={tasks} 
-            add={addTask} 
-            sort={handleSortTask} 
-            />
-          </div>
+    <section>
+      <div className="container">
+        <div className="wrapperTodo">
+          {/* <div className="actionAddTask"> */}
+          <TaskForm
+            tasks={tasks}
+            add={addTask}
+            sort={handleSortTask}
+          />
+          {/* </div> */}
           <div className="taskListWrapper">
             <TaskList
               tasks={tasks}
@@ -151,7 +151,7 @@ const App = () => {
           />
         )}
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -1,0 +1,174 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(45deg, rgb(2, 0, 50) 0%, rgb(89, 29, 148) 30%, rgba(0, 155, 255, 1) 100%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 100%;
+  color: var(--txtColor);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+:root {
+  --primaryColor: hsl(270, 54%, 50%);
+  --primaryHoverColor: hsl(288, 54%, 50%);
+  --txtColor: hsl(0, 0%, 100%);
+  --bgColor: hsl(0, 0%, 13%);
+  --alertColor: hsl(0, 100%, 50%);
+}
+
+/* Input  */
+input {
+  padding: 6px;
+  font-size: 1.2rem;
+  border: hidden;
+  border-bottom: 2px solid var(--primaryColor);
+  background-color: var(--bgColor);
+  color: var(--txtColor);
+  transition: border-color 0.2s ease;
+}
+
+input:hover,
+input:focus {
+  border-color: var(--primaryHoverColor);
+}
+
+input:focus,
+select:focus {
+  outline: none;
+}
+
+::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  cursor: pointer;
+}
+
+/* --- Task App --- */
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 20px;
+}
+
+.wrapperTodo {
+  width: 80%;
+  height: 100%;
+}
+
+/* --- TaskForm --- */
+
+.taskForm {
+  background-color: var(--bgColor);
+  padding: 20px;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.taskTitle {
+  padding-bottom: 20px;
+}
+
+.taskTitle h2 {
+  font-size: 2rem;
+}
+
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputWrapper .inputBox {
+  padding-bottom: 20px;
+}
+
+.inputWrapper input {
+  margin-right: 20px;
+  width: 30%;
+}
+
+.inputWrapper input[type="date"] {
+  margin-right: 0;
+}
+
+.inputWrapper input[type="checkbox"],
+.inputWrapper input[type="color"] {
+  width: 10%;
+  border-bottom: 0;
+}
+
+.inputWrapper input[type="color"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0;
+  border: none;
+}
+
+.inputWrapper input[type="color"]::-webkit-color-swatch {
+  border-radius: 6px;
+  height: 100%;
+}
+
+.inputWrapper input[type="color"]::-moz-color-swatch {
+  border-radius: 6px;
+  height: 100%;
+}
+
+.inputWrapper .option {
+  display: flex;
+  justify-content: space-between;
+}
+
+.inputWrapper .option button {
+  background-color: var(--primaryColor);
+  color: var(--txtColor);
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.inputWrapper .option button:hover {
+  background-color: var(--primaryHoverColor);
+}
+
+.inputWrapper .option select {
+  background-color: var(--primaryColor);
+  color: var(--txtColor);
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 1rem;
+  cursor: pointer;
+}

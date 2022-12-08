@@ -1,16 +1,16 @@
-.taskHeader h2{
+.taskHeader h2 {
   text-align: center;
   padding-bottom: 20px;
   margin: 15px 0;
 }
 
-.inputWrapper{
+.inputWrapper {
   display: flex;
   margin-bottom: 10px;
   width: 50%;
 }
 
-.inputWrapper input[type="checkbox"]{
+.inputWrapper input[type="checkbox"] {
   margin-left: 10px;
 }
 
@@ -23,17 +23,17 @@
   cursor: pointer;
 }
 
-.option{
+.option {
   display: flex;
   justify-content: space-between;
 }
 
-.validateError{
+.validateError {
   border-color: var(--alertColor) !important;
 }
 
 @media (max-width: 768px) {
- .inputWrapper{
-   width: 100%;
- } 
+  .inputWrapper {
+    width: 100%;
+  }
 }

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import "./Modal.css";
+// import "./Modal.css";
 
 const Modal = props => {
   let minDate = new Date().toISOString().slice(0, 10);
-  let maxDate = minDate.slice(0, 4) *1 + 100 + minDate.slice(4, 10)
+  let maxDate = minDate.slice(0, 4) * 1 + 100 + minDate.slice(4, 10)
 
   const [textValue, setText] = useState("")
   const [dateValue, setDate] = useState(minDate)
@@ -12,7 +12,7 @@ const Modal = props => {
 
   const [errors, setError] = React.useState(false);
 
-  useState(e=>{
+  useState(e => {
     setDate(props.date)
     setText(props.text)
     setCheck(props.dateCheck)
@@ -23,11 +23,11 @@ const Modal = props => {
     let validation = handleValidation();
     if (!validation.text) {
       if (!validation.check) {
-        props.editBtn(option, idTask,textValue,dateValue,dateCheckValue);
+        props.editBtn(option, idTask, textValue, dateValue, dateCheckValue);
       } else {
         props.editBtn(option, idTask);
       }
-      
+
       setText("");
       setError(false);
     } else {
@@ -54,17 +54,17 @@ const Modal = props => {
         <div className='editModal'>
           <h2>Edit task</h2>
           <div className='inputWrapper'>
-            <input 
-              type="text" 
-              value={textValue} 
+            <input
+              type="text"
+              value={textValue}
               onChange={e => setText(e.target.value)}
-              className={errors ? "validateError":null}
+              className={errors ? "validateError" : null}
             />
           </div>
           <div className="inputWrapper">
-            <input 
-              type="date" 
-              value={dateValue} 
+            <input
+              type="date"
+              value={dateValue}
               disabled={!dateCheckValue ? true : false}
               onChange={e => setDate(e.target.value)}
               min={minDate}
@@ -90,5 +90,5 @@ const Modal = props => {
     </div>
   );
 }
- 
+
 export default Modal;
