@@ -32,6 +32,7 @@ code {
   --primaryHoverColor: hsl(288, 54%, 50%);
   --txtColor: hsl(0, 0%, 100%);
   --bgColor: hsl(0, 0%, 13%);
+  --bgTaskColor: hsl(0, 0%, 20%);
   --alertColor: hsl(0, 100%, 50%);
 }
 
@@ -171,4 +172,41 @@ section {
   padding: 6px 12px;
   font-size: 1rem;
   cursor: pointer;
+}
+
+/* --- TaskList --- */
+.taskList {
+  margin: 20px 0;
+  padding: 10px;
+  border-radius: 12px;
+  background-color: var(--bgColor);
+}
+
+.taskWrapper {
+  background-color: var(--bgTaskColor);
+  border-radius: 12px;
+  padding: 10px 10px 10px 20px;
+  margin-bottom: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.taskWrapper:last-child {
+  margin-bottom: 0;
+}
+
+.taskWrapper::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 10px;
+  height: 100%;
+  background-color: aqua;
+}
+
+/* --- Task --- */
+.textWrapper {
+  display: flex;
+  justify-content: space-between;
 }

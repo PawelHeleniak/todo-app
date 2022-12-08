@@ -1,18 +1,18 @@
 import React from "react";
 // import "./Task.css";
 
-const Task = (props) => {
+const Task = ({ date, done, text, id, editTask }) => {
 
   const todayDate = new Date().toISOString().slice(0, 10);
-  const activeDate = todayDate >= props.date && props.done ? "outdated" : null;
+  const activeDate = todayDate >= date && done ? "outdated" : null;
 
   return (
-    <div className={props.done ? "taskWrapper" : "taskWrapper done"} onClick={props.editTask.bind(this, props.id)}>
+    <div className={done ? "taskWrapper" : "taskWrapper done"} onClick={editTask.bind(this, id)}>
       <span className="textWrapper">
-        {props.text}{" "}
-        {props.date && (
+        <span>{text}</span>
+        {date && (
           <>
-            - <a className={activeDate}>{props.date}</a>
+            <span className={activeDate}>{date}</span>
           </>
         )}
       </span>
