@@ -114,32 +114,38 @@ section {
   width: 30%;
 }
 
-.inputWrapper input[type="date"] {
+.inputBox.additions {
+  position: relative;
+}
+
+.inputBox.additions input[type="date"] {
   margin-right: 0;
 }
 
-.inputWrapper input[type="checkbox"],
-.inputWrapper input[type="color"] {
+.inputBox.additions input[type="checkbox"],
+.inputBox.additions input[type="color"] {
   width: 10%;
   border-bottom: 0;
 }
 
-.inputWrapper input[type="color"] {
+.inputBox.additions input[type="color"] {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
   background-color: transparent;
   cursor: pointer;
-  padding: 0;
   border: none;
+  position: absolute;
+  height: 100%;
+  padding-bottom: 20px;
 }
 
-.inputWrapper input[type="color"]::-webkit-color-swatch {
+.inputBox.additions input[type="color"]::-webkit-color-swatch {
   border-radius: 6px;
   height: 100%;
 }
 
-.inputWrapper input[type="color"]::-moz-color-swatch {
+.inputBox.additions input[type="color"]::-moz-color-swatch {
   border-radius: 6px;
   height: 100%;
 }
@@ -182,6 +188,8 @@ section {
   background-color: var(--bgColor);
 }
 
+
+/* --- Task --- */
 .taskWrapper {
   background-color: var(--bgTaskColor);
   border-radius: 12px;
@@ -189,24 +197,38 @@ section {
   margin-bottom: 10px;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .taskWrapper:last-child {
   margin-bottom: 0;
 }
 
-.taskWrapper::before {
-  content: '';
+
+.textWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.primaryView {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 20px;
+}
+
+.primaryView span {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.primaryView .outdated {
+  color: var(--alertColor);
+}
+
+.taskColor {
+  width: 10px;
+  height: 100%;
   position: absolute;
   left: 0;
   top: 0;
-  width: 10px;
-  height: 100%;
-  background-color: aqua;
-}
-
-/* --- Task --- */
-.textWrapper {
-  display: flex;
-  justify-content: space-between;
 }

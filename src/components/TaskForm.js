@@ -5,23 +5,26 @@ const TaskForm = (props) => {
   let minDate = new Date().toISOString().slice(0, 10);
   let maxDate = minDate.slice(0, 4) * 1 + 100 + minDate.slice(4, 10)
 
-  const [textTask, setText] = React.useState("");
+  const [title, setTitle] = React.useState("");
+  const [description, setDescription] = React.useState("");
   const [dateTask, setDate] = React.useState(minDate);
   const [dateCheck, setCheck] = React.useState(true);
+  const [colorTask, setColorTask] = React.useState("#00e0d1");
 
   const [errors, setError] = React.useState(false);
 
+  //add state to function in App component 
   const handleClick = () => {
     let validation = handleValidation();
 
     if (!validation.text) {
       if (!validation.check) {
-        props.add(props.tasks, textTask, dateTask);
+        props.add(props.tasks, title, description, dateTask, colorTask);
       } else {
-        props.add(props.tasks, textTask);
+        props.add(props.tasks, title);
       }
 
-      setText("");
+      setTitle("");
       setError(false);
     } else {
       setError(true);
@@ -32,7 +35,7 @@ const TaskForm = (props) => {
     let text = false;
     let check = false;
 
-    if (textTask.trim() === "") {
+    if (title.trim() === "") {
       text = true;
     }
     if (!dateCheck) {
@@ -59,8 +62,8 @@ const TaskForm = (props) => {
             placeholder="Title"
             className={errors ? "validateError" : null}
             id="title"
-            value={textTask}
-            onChange={(e) => setText(e.target.value)}
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
           />
           <input
             type="text"
@@ -68,8 +71,8 @@ const TaskForm = (props) => {
             placeholder="Description"
             className={errors ? "validateError" : null}
             id="newTask"
-            value={textTask}
-            onChange={(e) => setText(e.target.value)}
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
           />
         </div>
         <div className="inputBox additions">
@@ -90,10 +93,9 @@ const TaskForm = (props) => {
           <input
             type="color"
             name="addTask"
-            className={errors ? "validateError" : null}
             id="color"
-            value={textTask}
-            onChange={(e) => setText(e.target.value)}
+            value={colorTask}
+            onChange={(e) => setColorTask(e.target.value)}
           />
         </div>
         <div className="option">

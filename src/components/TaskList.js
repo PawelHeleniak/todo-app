@@ -7,8 +7,10 @@ const TaskList = (props) => {
     <Task
       key={task.id}
       id={task.id}
-      text={task.text}
+      title={task.title}
+      description={task.description}
       date={task.date}
+      color={task.color}
       done={task.done}
       removeTask={props.remove}
       doneTask={props.done}

@@ -32,7 +32,8 @@ const App = () => {
     getTasks(todoList);
   };
 
-  const addTask = (tasks, text, date) => {
+  const addTask = (tasks, title, description, date, color) => {
+    console.log(color);
     let todoList = [...tasks];
     let findIndex = todoList.map((task) => task.id);
     let maxIndex = Math.max.apply(null, findIndex);
@@ -45,8 +46,10 @@ const App = () => {
 
     todoList.push({
       id: maxIndex,
-      text: text,
+      title: title,
+      description: description,
       date: date,
+      color: color,
       done: true,
     });
 
@@ -139,7 +142,7 @@ const App = () => {
             />
           </div>
         </div>
-        {editModal && (
+        {/* {editModal && (
           <Modal
             editBtn={handleBtnModal}
             edit={handleOpenModal()}
@@ -149,7 +152,7 @@ const App = () => {
             id={idModal}
             tasks={tasks}
           />
-        )}
+        )} */}
       </div>
     </section>
   );
