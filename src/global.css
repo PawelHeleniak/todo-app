@@ -62,6 +62,10 @@ select:focus {
   cursor: pointer;
 }
 
+.validateError {
+  border-bottom: 2px solid var(--alertColor);
+}
+
 /* --- Task App --- */
 section {
   display: flex;

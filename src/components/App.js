@@ -33,7 +33,7 @@ const App = () => {
   };
 
   const addTask = (tasks, title, description, date, color) => {
-    console.log(color);
+
     let todoList = [...tasks];
     let findIndex = todoList.map((task) => task.id);
     let maxIndex = Math.max.apply(null, findIndex);

@@ -11,37 +11,36 @@ const TaskForm = (props) => {
   const [dateCheck, setCheck] = React.useState(true);
   const [colorTask, setColorTask] = React.useState("#00e0d1");
 
-  const [errors, setError] = React.useState(false);
+  const [error, setError] = React.useState('');
+
+  const maxCountTitle = 32;
 
   //add state to function in App component 
   const handleClick = () => {
     let validation = handleValidation();
+    setError(validation)
 
-    if (!validation.text) {
-      if (!validation.check) {
-        props.add(props.tasks, title, description, dateTask, colorTask);
-      } else {
-        props.add(props.tasks, title);
-      }
+    if (!validation) {
+      props.add(props.tasks, title, description, dateTask, colorTask);
+    } else if (validation === 'dateCheck') {
+      props.add(props.tasks, title, description, '', colorTask);
 
-      setTitle("");
-      setError(false);
-    } else {
-      setError(true);
     }
   };
 
   const handleValidation = () => {
-    let text = false;
-    let check = false;
-
-    if (title.trim() === "") {
-      text = true;
+    console.log(title.length);
+    if (title.trim() === "" || title.length > maxCountTitle) {
+      return "title"
+    }
+    if (description.trim() === "") {
+      return "description"
     }
     if (!dateCheck) {
-      check = true;
+      return "dateCheck"
     }
-    return { text, check };
+
+    return null;
   };
 
   const handleSort = (e) => {
@@ -60,16 +59,17 @@ const TaskForm = (props) => {
             type="text"
             name="addTask"
             placeholder="Title"
-            className={errors ? "validateError" : null}
+            className={error === "title" ? "validateError" : null}
             id="title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+            maxlength={maxCountTitle}
           />
           <input
             type="text"
             name="description"
             placeholder="Description"
-            className={errors ? "validateError" : null}
+            className={error === "description" ? "validateError" : null}
             id="newTask"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
