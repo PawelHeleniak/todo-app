@@ -29,7 +29,6 @@ const TaskForm = (props) => {
   };
 
   const handleValidation = () => {
-    console.log(title.length);
     if (title.trim() === "" || title.length > maxCountTitle) {
       return "title"
     }
@@ -63,7 +62,7 @@ const TaskForm = (props) => {
             id="title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            maxlength={maxCountTitle}
+            maxLength={maxCountTitle}
           />
           <input
             type="text"

@@ -66,6 +66,32 @@ select:focus {
   border-bottom: 2px solid var(--alertColor);
 }
 
+/* Custom input checkbox */
+input[type="checkbox"] {
+  appearance: none;
+  cursor: pointer;
+  margin: 0;
+  background-color: var(--bgTaskColor);
+}
+
+input[type="checkbox"]:hover {
+  box-shadow: inset 0 0 100px 100px rgb(255 255 255 / 0.1);
+}
+
+input[type="checkbox"]:checked {
+  appearance: none;
+  background-color: var(--primaryColor);
+  text-align: center;
+}
+
+input[type="checkbox"]:checked:after {
+  font-family: 'Material Icons';
+  content: "done";
+  vertical-align: middle;
+}
+
+/* ///////////// */
+
 /* --- Task App --- */
 section {
   display: flex;
@@ -122,13 +148,10 @@ section {
   position: relative;
 }
 
-.inputBox.additions input[type="date"] {
-  margin-right: 0;
-}
-
 .inputBox.additions input[type="checkbox"],
 .inputBox.additions input[type="color"] {
-  width: 10%;
+  width: 37px;
+  height: 37px;
   border-bottom: 0;
 }
 
@@ -141,7 +164,7 @@ section {
   border: none;
   position: absolute;
   height: 100%;
-  padding-bottom: 20px;
+  padding: 0 0 20px 0;
 }
 
 .inputBox.additions input[type="color"]::-webkit-color-swatch {
@@ -185,13 +208,13 @@ section {
 }
 
 /* --- TaskList --- */
-.taskList {
+.taskList.active {
   margin: 20px 0;
   padding: 10px;
   border-radius: 12px;
   background-color: var(--bgColor);
+  overflow: hidden;
 }
-
 
 /* --- Task --- */
 .taskWrapper {
@@ -202,6 +225,12 @@ section {
   position: relative;
   overflow: hidden;
   cursor: pointer;
+  animation: ejectingTask 0.3s;
+  transition: background-color 0.2s ease;
+}
+
+.taskWrapper:hover {
+  background-color: hsl(0, 0%, 23%);
 }
 
 .taskWrapper:last-child {
@@ -217,7 +246,6 @@ section {
 .primaryView {
   display: flex;
   justify-content: space-between;
-  padding-bottom: 20px;
 }
 
 .primaryView span {
@@ -229,10 +257,24 @@ section {
   color: var(--alertColor);
 }
 
+.extendedView {
+  padding-top: 20px;
+}
+
 .taskColor {
   width: 10px;
   height: 100%;
   position: absolute;
   left: 0;
   top: 0;
+}
+
+@keyframes ejectingTask {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
 }

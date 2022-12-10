@@ -17,9 +17,11 @@ const TaskList = (props) => {
       tasks={props.tasks}
       editTask={props.edit}
     />)
+  console.log(task.length === 0);
+
   return (
     <>
-      <div className="taskList">
+      <div className={task.length === 0 ? "taskList" : "taskList active"}>
         {task}
         <div className="taskCount">
           {!props.sort.length ? false : <span>Number of tasks: {props.sort.length}</span>}
