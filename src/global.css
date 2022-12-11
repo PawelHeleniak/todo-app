@@ -15,7 +15,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(45deg, rgb(2, 0, 50) 0%, rgb(89, 29, 148) 30%, rgba(0, 155, 255, 1) 100%);
+  /* background: linear-gradient(45deg, #007243 0%, #1effa3 30%, #fff 100%); */
+  background: linear-gradient(45deg, #1effa3 0%, #fff 50%);
   background-repeat: no-repeat;
   background-attachment: fixed;
   height: 100%;
@@ -28,12 +29,28 @@ code {
 }
 
 :root {
-  --primaryColor: hsl(270, 54%, 50%);
-  --primaryHoverColor: hsl(288, 54%, 50%);
+  --primaryColor: hsl(155, 100%, 70%);
+  --primaryHoverColor: hsl(156, 97%, 85%);
   --txtColor: hsl(0, 0%, 100%);
   --bgColor: hsl(0, 0%, 13%);
   --bgTaskColor: hsl(0, 0%, 20%);
   --alertColor: hsl(0, 100%, 50%);
+}
+
+/* Button */
+button {
+  background-color: var(--primaryColor);
+  color: var(--bgColor);
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: var(--primaryHoverColor);
 }
 
 /* Input  */
@@ -72,16 +89,23 @@ input[type="checkbox"] {
   cursor: pointer;
   margin: 0;
   background-color: var(--bgTaskColor);
+  color: var(--bgTaskColor);
 }
 
 input[type="checkbox"]:hover {
-  box-shadow: inset 0 0 100px 100px rgb(255 255 255 / 0.1);
+  box-shadow: inset 0 0 100px 100px rgb(255 255 255 / 0.2);
 }
 
 input[type="checkbox"]:checked {
   appearance: none;
   background-color: var(--primaryColor);
   text-align: center;
+}
+
+input[type="checkbox"]:after {
+  font-family: 'Material Icons';
+  content: "done";
+  vertical-align: middle;
 }
 
 input[type="checkbox"]:checked:after {
@@ -183,23 +207,12 @@ section {
 }
 
 .inputWrapper .option button {
-  background-color: var(--primaryColor);
-  color: var(--txtColor);
-  border: none;
-  border-radius: 6px;
-  padding: 6px 12px;
   font-size: 1.2rem;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.inputWrapper .option button:hover {
-  background-color: var(--primaryHoverColor);
 }
 
 .inputWrapper .option select {
   background-color: var(--primaryColor);
-  color: var(--txtColor);
+  color: var(--bgColor);
   border: none;
   border-radius: 6px;
   padding: 6px 12px;
@@ -227,6 +240,11 @@ section {
   cursor: pointer;
   animation: ejectingTask 0.3s;
   transition: background-color 0.2s ease;
+}
+
+.taskWrapper.done {
+  /* background-color: red; */
+  filter: grayscale(80%);
 }
 
 .taskWrapper:hover {
@@ -259,6 +277,24 @@ section {
 
 .extendedView {
   padding-top: 20px;
+}
+
+.extendedView .options {
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.extendedView .options button {
+  width: 100%;
+  margin-right: 10px;
+  font-weight: 600;
+  color: var(--bgTaskColor);
+}
+
+.extendedView .options button:last-child {
+  margin-right: 0;
 }
 
 .taskColor {
