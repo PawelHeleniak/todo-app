@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
-import TaskAction from "./TaskAction";
+import React, { useState } from "react";
+import TaskEdit from "./TaskEdit";
 
-const Task = ({ title, description, date, color, done, id, editTask, doneTask, removeTask }) => {
+const Task = ({ title, description, date, color, done, id, doneTask, editTask, removeTask }) => {
   const [open, setOpen] = useState(true);
+  const [edit, setEdit] = useState(false);
 
   const todayDate = new Date().toISOString().slice(0, 10);
   const activeDate = todayDate >= date ? "outdated" : null;
@@ -17,18 +18,39 @@ const Task = ({ title, description, date, color, done, id, editTask, doneTask, r
       setOpen(!open)
     }
   }
+
   return (
-    <div className={done ? "taskWrapper" : "taskWrapper done"} onClick={checkClick}>
-      {/* <div className={done ? "taskWrapper" : "taskWrapper done"} onClick={e => setOpen(!open)}> */}
-      <div className="textWrapper">
-        <div className="primaryView">
-          <span>{title}</span>
-          <span className={activeDate}>{date}</span>
+    !edit ?
+      <div className={done ? "taskWrapper" : "taskWrapper done"} onClick={checkClick}>
+        <div className="textWrapper">
+          <div className="primaryView">
+            <span>{title}</span>
+            <span className={activeDate}>{date}</span>
+          </div>
+          {open ?
+            <div className="extendedView">
+              <span>{description}</span>
+              <div className="options">
+                <button onClick={e => doneTask(id)}>{done ? 'Done' : 'Undone'}</button>
+                <button onClick={e => setEdit(!edit)}>Edit</button>
+                <button onClick={e => removeTask(id)}>Remove</button>
+              </div>
+            </div>
+            : ''}
+          <div className="taskColor" style={{ 'backgroundColor': color }}></div>
         </div>
-        {open ? <TaskAction description={description} doneTask={doneTask} id={id} done={done} removeTask={removeTask} /> : ''}
-        <div className="taskColor" style={{ 'backgroundColor': color }}></div>
-      </div>
-    </div >
+      </div >
+      :
+
+      <TaskEdit
+        oldColor={color}
+        openEdit={e => setEdit(!edit)}
+        editTask={editTask}
+        oldTitle={title}
+        oldDescription={description}
+        oldDate={date}
+        id={id}
+      />
   );
 };
 

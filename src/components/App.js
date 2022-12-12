@@ -1,33 +1,12 @@
 import React from "react";
-import TaskList from "./TaskList";
 import TaskForm from "./TaskForm";
-import Modal from "./Modal";
+import Task from './Task';
 
 const App = () => {
   const [tasks, getTasks] = React.useState([]);
   const [sort, getSort] = React.useState("all");
-  const [editModal, getModal] = React.useState(false);
 
-  const removeTask = (id) => {
-    let todoList = [...tasks];
-    const findTask = todoList.findIndex((task) => task.id === id);
-    todoList.splice(findTask, 1);
-
-    getTasks(todoList);
-  };
-
-  const handleDoneTask = (id) => {
-    let todoList = [...tasks];
-    todoList.map((task) => {
-      if (task.id === id) {
-        task.done = !task.done;
-      }
-    });
-    getTasks(todoList);
-  };
-
-  const addTask = (tasks, title, description, date, color) => {
-
+  const handleAddTask = (tasks, title, description, date, color) => {
     let todoList = [...tasks];
     let findIndex = todoList.map((task) => task.id);
     let maxIndex = Math.max.apply(null, findIndex);
@@ -50,10 +29,43 @@ const App = () => {
     getTasks(todoList);
   };
 
+  const handleDoneTask = (id) => {
+    let todoList = [...tasks];
+    todoList.map((task) => {
+      if (task.id === id) {
+        task.done = !task.done;
+      }
+    });
+    getTasks(todoList);
+  };
+
+  const handleEditTask = (id, title, description, date, color) => {
+    let todoList = [...tasks];
+    todoList.map((task) => {
+      if (task.id === id) {
+        task.title = title
+        task.description = description
+        task.date = date
+        task.color = color
+      }
+    })
+    getTasks(todoList);
+  };
+
+  const handleRemoveTask = (id) => {
+    let todoList = [...tasks];
+    const findTask = todoList.findIndex((task) => task.id === id);
+    todoList.splice(findTask, 1);
+
+    getTasks(todoList);
+  };
+
+  //changes the current state
   const handleSortTask = (sort) => {
     getSort(sort);
   };
 
+  //filters the list by current state "sort"
   const handleTaskList = () => {
     let todoList = [...tasks];
     let filtered;
@@ -72,37 +84,39 @@ const App = () => {
     return filtered;
   };
 
+  const task = handleTaskList().map(task =>
+    <Task
+      key={task.id}
+      id={task.id}
+      title={task.title}
+      description={task.description}
+      date={task.date}
+      color={task.color}
+      done={task.done}
+      removeTask={handleRemoveTask}
+      doneTask={handleDoneTask}
+      editTask={handleEditTask}
+      tasks={tasks}
+    />)
+
   return (
     <section>
       <div className="container">
         <div className="wrapperTodo">
-          {/* <div className="actionAddTask"> */}
           <TaskForm
             tasks={tasks}
-            add={addTask}
+            add={handleAddTask}
             sort={handleSortTask}
           />
-          {/* </div> */}
           <div className="taskListWrapper">
-            <TaskList
-              tasks={tasks}
-              sort={handleTaskList()}
-              doneTask={handleDoneTask}
-              removeTask={removeTask}
-            />
+            <div className={task.length === 0 ? "taskList" : "taskList active"}>
+              {task}
+              <div className="taskCount">
+                {!handleTaskList.length ? false : <span>Number of tasks: {handleTaskList().length}</span>}
+              </div>
+            </div>
           </div>
         </div>
-        {/* {editModal && (
-          <Modal
-            editBtn={handleBtnModal}
-            edit={handleOpenModal()}
-            date={dateModal}
-            text={textModal}
-            dateCheck={checkDateModal}
-            id={idModal}
-            tasks={tasks}
-          />
-        )} */}
       </div>
     </section>
   );

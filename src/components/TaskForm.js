@@ -1,17 +1,16 @@
-import React from "react";
-// import "./TaskHeader.css";
+import React, { useState } from "react";
 
 const TaskForm = (props) => {
   let minDate = new Date().toISOString().slice(0, 10);
   let maxDate = minDate.slice(0, 4) * 1 + 100 + minDate.slice(4, 10)
 
-  const [title, setTitle] = React.useState("");
-  const [description, setDescription] = React.useState("");
-  const [dateTask, setDate] = React.useState(minDate);
-  const [dateCheck, setCheck] = React.useState(true);
-  const [colorTask, setColorTask] = React.useState("#00e0d1");
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [dateTask, setDate] = useState(minDate);
+  const [dateCheck, setCheck] = useState(true);
+  const [colorTask, setColorTask] = useState("#00e0d1");
 
-  const [error, setError] = React.useState('');
+  const [error, setError] = useState('');
 
   const maxCountTitle = 32;
 
