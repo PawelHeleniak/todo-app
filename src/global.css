@@ -83,6 +83,10 @@ select:focus {
   border-bottom: 2px solid var(--alertColor);
 }
 
+input[type="color"] {
+  border: none;
+}
+
 /* Custom input checkbox */
 input[type="checkbox"] {
   appearance: none;
@@ -164,11 +168,18 @@ section {
 
 .inputWrapper .inputBox {
   padding-bottom: 20px;
+  width: 100%;
+}
+
+.inputWrapper .inputBox div {
+  display: inline-block;
+  width: 40%;
+  padding-right: 20px;
 }
 
 .inputWrapper input {
+  width: 100%;
   margin-right: 20px;
-  width: 30%;
 }
 
 .inputBox.additions {
@@ -187,7 +198,6 @@ section {
   appearance: none;
   background-color: transparent;
   cursor: pointer;
-  border: none;
   position: absolute;
   height: 100%;
   padding: 0 0 20px 0;
@@ -256,7 +266,6 @@ section {
   margin-bottom: 0;
 }
 
-
 .textWrapper {
   display: flex;
   flex-direction: column;
@@ -309,6 +318,49 @@ section {
 .taskWrapper.edit {
   cursor: auto;
 }
+
+.taskWrapper input[type="date"],
+.taskWrapper input[type="checkbox"] {
+  margin-left: 10px;
+}
+
+/* --- Media ---  */
+
+
+@media only screen and (max-width: 1199px) {
+  .inputWrapper .inputBox div {
+    width: 50%;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .inputWrapper .inputBox div {
+    width: 100%;
+  }
+
+  .inputBox.primary {
+    padding-bottom: 0;
+  }
+
+  .inputBox input {
+    margin-bottom: 20px;
+  }
+
+  .inputBox.additions input[type="color"] {
+    height: 100%;
+    padding: 0;
+    height: 39px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .wrapperTodo {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 419px) {}
+
 
 /* --- KeyFrames --- */
 @keyframes ejectingTask {

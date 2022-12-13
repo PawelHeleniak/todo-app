@@ -18,9 +18,15 @@ const TaskForm = (props) => {
     let values = { error, title, description, date, color, dateCheck }
     let result = props.add(values)
 
-    if (result || result !== 'dateCheck') {
+    if (result || result !== 'dateCheck')
       setError(result);
-    }
+
+    if (!result)
+      setTitle("")
+    setDescription("")
+    setDate(minDate)
+    setCheck(true)
+    setColorTask("#00e0d1")
   };
 
   const handleSort = (e) => {
@@ -35,36 +41,43 @@ const TaskForm = (props) => {
       </div>
       <div className="inputWrapper">
         <div className="inputBox primary">
-          <input
-            type="text"
-            name="addTask"
-            placeholder="Title"
-            className={error === "title" ? "validateError" : null}
-            id="title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            maxLength={props.maxCountTitle}
-          />
-          <input
-            type="text"
-            name="description"
-            placeholder="Description"
-            className={error === "description" ? "validateError" : null}
-            id="newTask"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
+          <div>
+            <input
+              type="text"
+              name="addTask"
+              placeholder="Title"
+              className={error === "title" ? "validateError" : null}
+              id="title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              maxLength={props.maxCountTitle}
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              name="description"
+              placeholder="Description"
+              className={error === "description" ? "validateError" : null}
+              id="newTask"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+          </div>
+
         </div>
         <div className="inputBox additions">
-          <input
-            type="date"
-            id="finishDate"
-            value={date}
-            disabled={!dateCheck ? true : false}
-            min={minDate}
-            max={maxDate}
-            onChange={(e) => setDate(e.target.value)}
-          />
+          <div>
+            <input
+              type="date"
+              id="finishDate"
+              value={date}
+              disabled={!dateCheck ? true : false}
+              min={minDate}
+              max={maxDate}
+              onChange={(e) => setDate(e.target.value)}
+            />
+          </div>
           <input
             type="checkbox"
             checked={dateCheck}
