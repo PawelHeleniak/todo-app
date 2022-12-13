@@ -6,39 +6,21 @@ const TaskForm = (props) => {
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [dateTask, setDate] = useState(minDate);
+  const [date, setDate] = useState(minDate);
   const [dateCheck, setCheck] = useState(true);
-  const [colorTask, setColorTask] = useState("#00e0d1");
+  const [color, setColorTask] = useState("#00e0d1");
 
   const [error, setError] = useState('');
 
-  const maxCountTitle = 32;
 
   //add state to function in App component 
-  const handleClick = () => {
-    let validation = handleValidation();
-    setError(validation)
+  const handleAdd = () => {
+    let values = { error, title, description, date, color, dateCheck }
+    let result = props.add(values)
 
-    if (!validation) {
-      props.add(props.tasks, title, description, dateTask, colorTask);
-    } else if (validation === 'dateCheck') {
-      props.add(props.tasks, title, description, '', colorTask);
-
+    if (result || result !== 'dateCheck') {
+      setError(result);
     }
-  };
-
-  const handleValidation = () => {
-    if (title.trim() === "" || title.length > maxCountTitle) {
-      return "title"
-    }
-    if (description.trim() === "") {
-      return "description"
-    }
-    if (!dateCheck) {
-      return "dateCheck"
-    }
-
-    return null;
   };
 
   const handleSort = (e) => {
@@ -61,7 +43,7 @@ const TaskForm = (props) => {
             id="title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            maxLength={maxCountTitle}
+            maxLength={props.maxCountTitle}
           />
           <input
             type="text"
@@ -77,7 +59,7 @@ const TaskForm = (props) => {
           <input
             type="date"
             id="finishDate"
-            value={dateTask}
+            value={date}
             disabled={!dateCheck ? true : false}
             min={minDate}
             max={maxDate}
@@ -92,12 +74,12 @@ const TaskForm = (props) => {
             type="color"
             name="addTask"
             id="color"
-            value={colorTask}
+            value={color}
             onChange={(e) => setColorTask(e.target.value)}
           />
         </div>
         <div className="option">
-          <button onClick={handleClick}>Add task</button>
+          <button onClick={handleAdd}>Add task</button>
           <select onChange={handleSort}>
             <option>All</option>
             <option>Done</option>

@@ -6,8 +6,10 @@ const App = () => {
   const [tasks, getTasks] = React.useState([]);
   const [sort, getSort] = React.useState("all");
 
-  const handleAddTask = (tasks, title, description, date, color) => {
+  const handleAddTask = ({ id, title, description, date, color, dateCheck }) => {
     let todoList = [...tasks];
+    let result = validation(id, title, description, date, color, dateCheck)
+
     let findIndex = todoList.map((task) => task.id);
     let maxIndex = Math.max.apply(null, findIndex);
 
@@ -17,16 +19,30 @@ const App = () => {
       maxIndex = 0;
     }
 
-    todoList.push({
-      id: maxIndex,
-      title: title,
-      description: description,
-      date: date,
-      color: color,
-      done: true,
-    });
-
+    if (result === null)
+      todoList.push({
+        id: maxIndex,
+        title: title,
+        description: description,
+        date: date,
+        color: color,
+        done: true,
+      });
     getTasks(todoList);
+
+    if (result === 'dateCheck')
+      todoList.push({
+        id: maxIndex,
+        title: title,
+        description: description,
+        date: '',
+        color: color,
+        done: true,
+      });
+    getTasks(todoList);
+
+    if (result)
+      return result
   };
 
   const handleDoneTask = (id) => {
@@ -39,17 +55,36 @@ const App = () => {
     getTasks(todoList);
   };
 
-  const handleEditTask = (id, title, description, date, color) => {
+  const handleEditTask = ({ id, title, description, date, color, dateCheck }) => {
     let todoList = [...tasks];
-    todoList.map((task) => {
-      if (task.id === id) {
-        task.title = title
-        task.description = description
-        task.date = date
-        task.color = color
-      }
-    })
+    let result = validation(id, title, description, date, color, dateCheck)
+
+    if (result === null)
+      todoList.map((task) => {
+        if (task.id === id) {
+          task.title = title
+          task.description = description
+          task.date = date
+          task.color = color
+          task.dateCheck = dateCheck
+        }
+      })
     getTasks(todoList);
+
+    if (result === 'dateCheck')
+      todoList.map((task) => {
+        if (task.id === id) {
+          task.title = title
+          task.description = description
+          task.date = ''
+          task.color = color
+          task.dateCheck = dateCheck
+        }
+      })
+    getTasks(todoList);
+
+    if (result)
+      return result
   };
 
   const handleRemoveTask = (id) => {
@@ -59,6 +94,25 @@ const App = () => {
 
     getTasks(todoList);
   };
+
+  /// Validation START
+  const maxCountTitle = 32;
+
+  //add state to function in App component 
+  const validation = (id, title, description, date, color, dateCheck) => {
+    if (title === '' || title.length > maxCountTitle) {
+      return "title"
+    }
+    if (description.trim() === "") {
+      return "description"
+    }
+    if (!dateCheck) {
+      return "dateCheck"
+    }
+
+    return null;
+  };
+  /// Validation END
 
   //changes the current state
   const handleSortTask = (sort) => {
@@ -97,6 +151,7 @@ const App = () => {
       doneTask={handleDoneTask}
       editTask={handleEditTask}
       tasks={tasks}
+      maxCountTitle={maxCountTitle}
     />)
 
   return (
@@ -104,9 +159,9 @@ const App = () => {
       <div className="container">
         <div className="wrapperTodo">
           <TaskForm
-            tasks={tasks}
             add={handleAddTask}
             sort={handleSortTask}
+            maxCountTitle={maxCountTitle}
           />
           <div className="taskListWrapper">
             <div className={task.length === 0 ? "taskList" : "taskList active"}>
