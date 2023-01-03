@@ -30,15 +30,14 @@ const TaskEdit = ({ openEdit, oldTitle, oldDescription, oldDate, oldColor, editT
     <div className="taskWrapper edit">
       <div className="textWrapper">
         <div className="primaryView">
-          <span>
+          <div className="inputWrapper">
             <input type="text"
               maxLength={maxCountTitle}
               className={error === "title" ? "validateError" : null}
               onChange={e => setTitle(e.target.value)}
               value={title} />
-          </span>
-          <span>
-            <input type="color" onChange={(e) => setColorTask(e.target.value)} value={color} />
+          </div>
+          <div className="inputWrapper">
             <input type="checkbox" onChange={(e) => setCheck(!dateCheck)} checked={dateCheck} />
             <input type="date"
               min={minDate}
@@ -46,10 +45,15 @@ const TaskEdit = ({ openEdit, oldTitle, oldDescription, oldDate, oldColor, editT
               onChange={(e) => setDate(e.target.value)}
               value={date}
               disabled={!dateCheck ? true : false} />
-          </span>
+          </div>
         </div>
         <div className="extendedView">
-          <span><input type="text" className={error === "description" ? "validateError" : null} onChange={e => setDescription(e.target.value)} value={description} /></span>
+          <div className="inputWrapper">
+            <input type="text" className={error === "description" ? "validateError" : null} onChange={e => setDescription(e.target.value)} value={description} />
+          </div>
+          <div className="inputWrapper color">
+            <input type="color" onChange={(e) => setColorTask(e.target.value)} value={color} />
+          </div>
           <div className="options">
             <button onClick={e => handleEdit()}>Accept</button>
             <button onClick={e => openEdit()}>Cancel</button>

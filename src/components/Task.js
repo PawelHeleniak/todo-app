@@ -14,9 +14,8 @@ const Task = ({ title, description, date, color, done, id, doneTask, editTask, r
     let buttons = [...buttonsList];
     let check = buttons.map(button => e.target === button)
 
-    if (!check.includes(true)) {
+    if (!check.includes(true))
       setOpen(!open)
-    }
   }
 
   return (

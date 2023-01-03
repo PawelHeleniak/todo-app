@@ -39,9 +39,9 @@ const TaskForm = (props) => {
       <div className="taskTitle">
         <h2>Task list</h2>
       </div>
-      <div className="inputWrapper">
-        <div className="inputBox primary">
-          <div>
+      <div className="inputForm">
+        <div className="inputWrapper primary">
+          <div className="inputBox">
             <input
               type="text"
               name="addTask"
@@ -53,7 +53,7 @@ const TaskForm = (props) => {
               maxLength={props.maxCountTitle}
             />
           </div>
-          <div>
+          <div className="inputBox">
             <input
               type="text"
               name="description"
@@ -66,8 +66,8 @@ const TaskForm = (props) => {
           </div>
 
         </div>
-        <div className="inputBox additions">
-          <div>
+        <div className="inputWrapper additions">
+          <div className="inputBox">
             <input
               type="date"
               id="finishDate"
@@ -91,7 +91,7 @@ const TaskForm = (props) => {
             onChange={(e) => setColorTask(e.target.value)}
           />
         </div>
-        <div className="option">
+        <div className="options">
           <button onClick={handleAdd}>Add task</button>
           <select onChange={handleSort}>
             <option>All</option>

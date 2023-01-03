@@ -161,38 +161,38 @@ section {
   font-size: 2rem;
 }
 
-.inputWrapper {
+.inputForm {
   display: flex;
   flex-direction: column;
 }
 
-.inputWrapper .inputBox {
+.inputForm .inputWrapper {
   padding-bottom: 20px;
   width: 100%;
 }
 
-.inputWrapper .inputBox div {
+.inputForm .inputWrapper div {
   display: inline-block;
   width: 40%;
   padding-right: 20px;
 }
 
-.inputWrapper input {
+.inputForm input {
   width: 100%;
   margin-right: 20px;
 }
 
-.inputBox.additions {
+.inputWrapper {
   position: relative;
 }
 
-.inputBox.additions input[type="checkbox"],
-.inputBox.additions input[type="color"] {
-  width: 39px;
+.inputWrapper input[type="checkbox"],
+.inputWrapper input[type="color"] {
+  width: 39px !important;
   height: 39px;
 }
 
-.inputBox.additions input[type="color"] {
+.inputWrapper input[type="color"] {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -203,32 +203,32 @@ section {
   padding: 0 0 20px 0;
 }
 
-.inputBox.additions input[type="color"]::-webkit-color-swatch {
+.inputWrapper input[type="color"]::-webkit-color-swatch {
   border-radius: 6px;
   height: 100%;
 }
 
-.inputBox.additions input[type="color"]::-moz-color-swatch {
+.inputWrapper input[type="color"]::-moz-color-swatch {
   border-radius: 6px;
   height: 100%;
 }
 
-.inputWrapper .option {
+.inputForm .options {
   display: flex;
   justify-content: space-between;
 }
 
-.inputWrapper .option button {
+.inputForm .options button {
   font-size: 1.2rem;
 }
 
-.inputWrapper .option select {
+.inputForm .options select {
   background-color: var(--primaryColor);
   color: var(--bgColor);
   border: none;
   border-radius: 6px;
   padding: 6px 12px;
-  font-size: 1rem;
+  font-size: 1.2rem;
   cursor: pointer;
 }
 
@@ -319,37 +319,69 @@ section {
   cursor: auto;
 }
 
-.taskWrapper input[type="date"],
-.taskWrapper input[type="checkbox"] {
+.taskWrapper.edit input[type="date"],
+.taskWrapper.edit input[type="checkbox"] {
   margin-left: 10px;
+}
+
+/* --- Task Edit--- */
+
+.primaryView .inputWrapper:last-child {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.extendedView .inputWrapper {
+  padding-bottom: 20px;
+}
+
+.taskWrapper.edit .inputWrapper.color {
+  height: 59px;
+  padding-bottom: 0;
+}
+
+.taskWrapper.edit .extendedView .options {
+  padding-top: 0;
 }
 
 /* --- Media ---  */
 
 
 @media only screen and (max-width: 1199px) {
-  .inputWrapper .inputBox div {
+  .inputForm .inputWrapper div {
     width: 50%;
   }
 }
 
 @media only screen and (max-width: 991px) {
-  .inputWrapper .inputBox div {
+  .inputForm .inputWrapper div {
     width: 100%;
   }
 
-  .inputBox.primary {
+  .inputWrapper.primary {
     padding-bottom: 0;
   }
 
-  .inputBox input {
+  .inputWrapper input {
     margin-bottom: 20px;
   }
 
-  .inputBox.additions input[type="color"] {
+  .inputWrapper input[type="color"] {
     height: 100%;
     padding: 0;
     height: 39px;
+  }
+
+  .taskWrapper.edit .primaryView {
+    flex-direction: column-reverse;
+  }
+
+  .taskWrapper.edit .inputWrapper input {
+    width: 100%;
+  }
+
+  .extendedView {
+    padding: 0;
   }
 }
 
