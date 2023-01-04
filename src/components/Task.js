@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import TaskEdit from "./TaskEdit";
 
-const Task = ({ title, description, date, color, done, id, doneTask, editTask, removeTask }) => {
+const Task = ({ openEdit, doneTask, setEdit, removeTask, title, description, date, color, done, id }) => {
   const [open, setOpen] = useState(true);
-  const [edit, setEdit] = useState(false);
 
   const todayDate = new Date().toISOString().slice(0, 10);
   const activeDate = todayDate >= date ? "outdated" : null;
@@ -19,37 +17,25 @@ const Task = ({ title, description, date, color, done, id, doneTask, editTask, r
   }
 
   return (
-    !edit ?
-      <div className={done ? "taskWrapper" : "taskWrapper done"} onClick={checkClick}>
-        <div className="textWrapper">
-          <div className="primaryView">
-            <span>{title}</span>
-            <span className={activeDate}>{date}</span>
-          </div>
-          {open ?
-            <div className="extendedView">
-              <span>{description}</span>
-              <div className="options">
-                <button onClick={e => doneTask(id)}>{done ? 'Done' : 'Undone'}</button>
-                <button onClick={e => setEdit(!edit)}>Edit</button>
-                <button onClick={e => removeTask(id)}>Remove</button>
-              </div>
-            </div>
-            : ''}
-          <div className="taskColor" style={{ 'backgroundColor': color }}></div>
+    <div className={done ? "taskWrapper" : "taskWrapper done"} onClick={checkClick}>
+      <div className="textWrapper">
+        <div className="primaryView">
+          <span>{title}</span>
+          <span className={activeDate}>{date}</span>
         </div>
-      </div >
-      :
-
-      <TaskEdit
-        oldColor={color}
-        openEdit={e => setEdit(!edit)}
-        editTask={editTask}
-        oldTitle={title}
-        oldDescription={description}
-        oldDate={date}
-        id={id}
-      />
+        {open ?
+          <div className="extendedView">
+            <span>{description}</span>
+            <div className="options">
+              <button onClick={e => doneTask(id)}>{done ? 'Done' : 'Undone'}</button>
+              <button onClick={e => openEdit()}>Edit</button>
+              <button onClick={e => removeTask(id)}>Remove</button>
+            </div>
+          </div>
+          : ''}
+        <div className="taskColor" style={{ 'backgroundColor': color }}></div>
+      </div>
+    </div >
   );
 };
 

@@ -1,6 +1,6 @@
 import React from "react";
 import TaskForm from "./TaskForm";
-import Task from './Task';
+import TaskList from './TaskList';
 
 const App = () => {
   const [tasks, getTasks] = React.useState([]);
@@ -139,7 +139,7 @@ const App = () => {
   };
 
   const task = handleTaskList().map(task =>
-    <Task
+    <TaskList
       key={task.id}
       id={task.id}
       title={task.title}
