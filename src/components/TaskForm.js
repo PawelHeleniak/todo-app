@@ -1,6 +1,14 @@
-import React, { useState } from "react";
+import React, { useState } from "react"
+import Select from 'react-select'
 
+const options = [
+  { label: 'All', value: 0 },
+  { label: 'Done', value: 1 },
+  { label: 'Progress', value: 2 },
+]
 const TaskForm = (props) => {
+  const { add, maxCountTitle, sort, firstSort } = props
+
   let minDate = new Date().toISOString().slice(0, 10);
   let maxDate = minDate.slice(0, 4) * 1 + 100 + minDate.slice(4, 10)
 
@@ -16,7 +24,7 @@ const TaskForm = (props) => {
   //add state to function in App component 
   const handleAdd = () => {
     let values = { error, title, description, date, color, dateCheck }
-    let result = props.add(values)
+    let result = add(values)
 
     if (result || result !== 'dateCheck')
       setError(result);
@@ -29,10 +37,18 @@ const TaskForm = (props) => {
     setColorTask("#00e0d1")
   };
 
-  const handleSort = (e) => {
-    let sort = e.target.value;
-    props.sort(sort);
-  };
+  //React-select style
+  const baseStyles = {
+    control: (styles) => ({
+      ...styles,
+      backgroundColor: 'var(--primaryColor)',
+      border: 0,
+      cursor: 'pointer',
+      minWidth: '100px',
+    }),
+    option: (styles, state) => ({ ...styles, cursor: 'pointer', backgroundColor: state.isSelected ? "var(--primaryDarkColor)" : '' }),
+    placeholder: (styles) => ({ ...styles, color: 'var(--bgColor);', })
+  }
 
   return (
     <div className="taskForm">
@@ -50,7 +66,7 @@ const TaskForm = (props) => {
               id="title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              maxLength={props.maxCountTitle}
+              maxLength={maxCountTitle}
             />
           </div>
           <div className="inputBox">
@@ -93,11 +109,7 @@ const TaskForm = (props) => {
         </div>
         <div className="options">
           <button onClick={handleAdd}>Add task</button>
-          <select onChange={handleSort}>
-            <option>All</option>
-            <option>Done</option>
-            <option>Progress</option>
-          </select>
+          <Select options={options} onChange={e => sort(e)} className='react-select' styles={baseStyles} placeholder={options[firstSort].label} />
         </div>
       </div>
     </div>

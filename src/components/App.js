@@ -4,7 +4,7 @@ import TaskList from './TaskList';
 
 const App = () => {
   const [tasks, getTasks] = React.useState([]);
-  const [sort, getSort] = React.useState("all");
+  const [sort, getSort] = React.useState(0);
 
   const handleAddTask = ({ id, title, description, date, color, dateCheck }) => {
     let todoList = [...tasks];
@@ -116,7 +116,7 @@ const App = () => {
 
   //changes the current state
   const handleSortTask = (sort) => {
-    getSort(sort);
+    getSort(sort.value);
   };
 
   //filters the list by current state "sort"
@@ -125,14 +125,14 @@ const App = () => {
     let filtered;
 
     switch (sort) {
-      case "Done":
+      case 0:
+        filtered = todoList;
+        break;
+      case 1:
         filtered = todoList.filter((task) => !task.done);
         break;
-      case "Progress":
+      case 2:
         filtered = todoList.filter((task) => task.done);
-        break;
-      default:
-        filtered = todoList;
         break;
     }
     return filtered;
@@ -162,12 +162,13 @@ const App = () => {
             add={handleAddTask}
             sort={handleSortTask}
             maxCountTitle={maxCountTitle}
+            firstSort={sort}
           />
           <div className="taskListWrapper">
             <div className={task.length === 0 ? "taskList" : "taskList active"}>
               {task}
               <div className="taskCount">
-                {!handleTaskList.length ? false : <span>Number of tasks: {handleTaskList().length}</span>}
+                {!task.length ? false : <span>Number of tasks: {task.length}</span>}
               </div>
             </div>
           </div>

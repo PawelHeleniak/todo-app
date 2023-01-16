@@ -29,12 +29,16 @@ code {
 }
 
 :root {
+  --primaryDarkColor: hsl(155, 100%, 35%);
   --primaryColor: hsl(155, 100%, 70%);
   --primaryHoverColor: hsl(156, 97%, 85%);
   --txtColor: hsl(0, 0%, 100%);
   --bgColor: hsl(0, 0%, 13%);
   --bgTaskColor: hsl(0, 0%, 20%);
   --alertColor: hsl(0, 100%, 50%);
+
+  --slightBorderRadius: 6px;
+  --averageBorderRadius: 12px;
 }
 
 /* Button */
@@ -42,7 +46,7 @@ button {
   background-color: var(--primaryColor);
   color: var(--bgColor);
   border: none;
-  border-radius: 6px;
+  border-radius: var(--slightBorderRadius);
   padding: 6px 12px;
   font-size: 1rem;
   cursor: pointer;
@@ -149,8 +153,7 @@ section {
   background-color: var(--bgColor);
   padding: 20px;
   width: 100%;
-  border-radius: 12px;
-  overflow: hidden;
+  border-radius: var(--averageBorderRadius);
 }
 
 .taskTitle {
@@ -204,12 +207,12 @@ section {
 }
 
 .inputWrapper input[type="color"]::-webkit-color-swatch {
-  border-radius: 6px;
+  border-radius: var(--slightBorderRadius);
   height: 100%;
 }
 
 .inputWrapper input[type="color"]::-moz-color-swatch {
-  border-radius: 6px;
+  border-radius: var(--slightBorderRadius);
   height: 100%;
 }
 
@@ -222,21 +225,27 @@ section {
   font-size: 1.2rem;
 }
 
-.inputForm .options select {
+/* react-select */
+.inputForm .options .react-select {
   background-color: var(--primaryColor);
   color: var(--bgColor);
-  border: none;
-  border-radius: 6px;
-  padding: 6px 12px;
+  border-radius: var(--slightBorderRadius);
   font-size: 1.2rem;
-  cursor: pointer;
+}
+
+.react-select svg {
+  color: var(--bgColor);
+}
+
+.react-select span {
+  background-color: var(--bgColor);
 }
 
 /* --- TaskList --- */
 .taskList.active {
   margin: 20px 0;
   padding: 10px;
-  border-radius: 12px;
+  border-radius: var(--averageBorderRadius);
   background-color: var(--bgColor);
   overflow: hidden;
 }
@@ -244,7 +253,7 @@ section {
 /* --- Task --- */
 .taskWrapper {
   background-color: var(--bgTaskColor);
-  border-radius: 12px;
+  border-radius: var(--averageBorderRadius);
   padding: 10px 10px 10px 20px;
   margin-bottom: 10px;
   position: relative;
