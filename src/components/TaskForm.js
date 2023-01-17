@@ -45,7 +45,7 @@ const TaskForm = (props) => {
       backgroundColor: 'var(--primaryColor)',
       border: 0,
       cursor: 'pointer',
-      minWidth: '100px',
+      maxWidth: '110px',
     }),
     option: (styles, state) => ({ ...styles, cursor: 'pointer', backgroundColor: state.isSelected ? "var(--primaryDarkColor)" : 'inherit', '&:hover': { backgroundColor: state.isSelected ? 'var(--primaryDarkColor)' : 'var(--primaryHoverColor)' } }),
     placeholder: (styles) => ({ ...styles, color: 'var(--bgColor);', }),
