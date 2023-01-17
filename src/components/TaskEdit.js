@@ -6,8 +6,8 @@ const TaskEdit = ({ openEdit, oldTitle, oldDescription, oldDate, oldColor, editT
 
   const [title, setTitle] = useState(oldTitle);
   const [description, setDescription] = useState(oldDescription);
-  const [date, setDate] = useState(oldDate);
-  const [dateCheck, setCheck] = useState(true);
+  const [date, setDate] = useState(oldDate === '' ? minDate : oldDate);
+  const [dateCheck, setCheck] = useState(oldDate === '' ? false : true);
   const [color, setColorTask] = useState(oldColor);
 
   const [error, setError] = useState('');

@@ -29,12 +29,13 @@ const TaskForm = (props) => {
     if (result || result !== 'dateCheck')
       setError(result);
 
-    if (!result)
+    if (!result || result === 'dateCheck') {
       setTitle("")
-    setDescription("")
-    setDate(minDate)
-    setCheck(true)
-    setColorTask("#00e0d1")
+      setDescription("")
+      setDate(minDate)
+      setCheck(true)
+      setColorTask("#00e0d1")
+    }
   };
 
   //React-select style

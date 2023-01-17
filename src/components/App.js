@@ -19,23 +19,12 @@ const App = () => {
       maxIndex = 0;
     }
 
-    if (result === null)
+    if (result === null || result === "dateCheck")
       todoList.push({
         id: maxIndex,
         title: title,
         description: description,
-        date: date,
-        color: color,
-        done: true,
-      });
-    getTasks(todoList);
-
-    if (result === 'dateCheck')
-      todoList.push({
-        id: maxIndex,
-        title: title,
-        description: description,
-        date: '',
+        date: result === "dateCheck" ? '' : date,
         color: color,
         done: true,
       });
@@ -59,24 +48,12 @@ const App = () => {
     let todoList = [...tasks];
     let result = validation(id, title, description, date, color, dateCheck)
 
-    if (result === null)
+    if (result === null || result === "dateCheck")
       todoList.map((task) => {
         if (task.id === id) {
           task.title = title
           task.description = description
-          task.date = date
-          task.color = color
-          task.dateCheck = dateCheck
-        }
-      })
-    getTasks(todoList);
-
-    if (result === 'dateCheck')
-      todoList.map((task) => {
-        if (task.id === id) {
-          task.title = title
-          task.description = description
-          task.date = ''
+          task.date = result === "dateCheck" ? '' : date
           task.color = color
           task.dateCheck = dateCheck
         }
